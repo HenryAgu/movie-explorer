@@ -12,7 +12,7 @@ export function HeroBanner({ trending }: HeroBannerProps) {
     return (
         <div className="relative w-full h-[420px] xl:h-[540px] 2xl:h-[680px] overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950">
             {/* Background Image */}
-            {backdrop && (
+            {backdrop ? (
                 <Image
                     src={backdrop}
                     alt={trending.title}
@@ -20,6 +20,10 @@ export function HeroBanner({ trending }: HeroBannerProps) {
                     priority
                     className="object-cover object-top"
                 />
+            ) : (
+                <div className="absolute inset-0 flex items-center justify-center opacity-10">
+                    <span className="text-[200px] grayscale select-none">🎬</span>
+                </div>
             )}
 
             <div className="absolute bg-black/50 inset-0"></div>
