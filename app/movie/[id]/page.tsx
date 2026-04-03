@@ -2,6 +2,7 @@ import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, Star, Users } from 'lucide-react';
+import type { Metadata } from 'next';
 
 const MOVIE = {
   id: 1,
@@ -32,6 +33,34 @@ const MOVIE = {
     { id: 104, title: "Arrival", year: "2016", poster_path: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=400", rating: 7.9 },
   ]
 };
+
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  // In a real application, you'd fetch the movie data by 'id' here.
+  // Using hardcoded MOVIE data for demonstration.
+  return {
+    title: `${MOVIE.title} - Movie Explorer`,
+    description: MOVIE.overview,
+    openGraph: {
+      title: MOVIE.title,
+      description: MOVIE.overview,
+      images: [
+        {
+          url: MOVIE.backdrop_path,
+          width: 1200,
+          height: 630,
+          alt: MOVIE.title,
+        }
+      ],
+      type: 'video.movie',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: MOVIE.title,
+      description: MOVIE.overview,
+      images: [MOVIE.backdrop_path],
+    },
+  }
+}
 
 const MovieDetailPage = () => {
   return (
