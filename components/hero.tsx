@@ -2,9 +2,10 @@ import { backdropUrl } from "@/lib/tmbd";
 import { Movie } from "@/type";
 import Image from "next/image";
 import Link from "next/link";
+import { SearchFilter } from "./search-filter";
 
 type HeroBannerProps = {
-  trending: Movie;
+    trending: Movie;
 };
 
 export function HeroBanner({ trending }: HeroBannerProps) {
@@ -13,7 +14,7 @@ export function HeroBanner({ trending }: HeroBannerProps) {
     const backdrop = backdropUrl(trending.backdrop_path);
     const year = trending.release_date?.slice(0, 4);
     return (
-        <div className="relative w-full h-[420px] xl:h-[540px] 2xl:h-[680px] overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950">
+        <div className="relative w-full h-[480px] xl:h-[580px] 2xl:h-[720px] overflow-hidden bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-950">
             {/* Background Image */}
             {backdrop ? (
                 <Image
@@ -31,9 +32,14 @@ export function HeroBanner({ trending }: HeroBannerProps) {
 
             <div className="absolute bg-black/50 inset-0"></div>
 
+            {/* Top Bar with Search */}
+            <div className="relative z-50 pt-10">
+                <SearchFilter />
+            </div>
+
             {/* Content */}
-            <div className="absolute inset-0 flex items-end pb-12 px-6 sm:px-10 xl:px-16">
-                <div className="max-w-xl">
+            <div className="absolute inset-0 flex items-end pb-12 px-6 sm:px-10 xl:px-16 pointer-events-none">
+                <div className="max-w-xl pointer-events-auto">
                     <span className="inline-block rounded-full border border-yellow-500/40 bg-yellow-500/10 px-3 py-1 text-xs font-medium text-yellow-400 mb-3">
                         Trending Now
                     </span>
@@ -49,7 +55,7 @@ export function HeroBanner({ trending }: HeroBannerProps) {
                         {trending.overview ?? "--"}
                     </p>
                     <Link href={`/movie/${trending.id}`} className="inline-flex items-center gap-2 rounded-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-6 py-3 text-sm transition active:scale-95">
-                        <span>▶</span> View Detailsr
+                        <span>▶</span> View Details
                     </Link>
                 </div>
             </div>

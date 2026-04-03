@@ -43,3 +43,12 @@ export const getMovieDetails = (id: string | number) =>
   tmdbFetch(`/movie/${id}`, {
     append_to_response: "credits,videos,similar,watch/providers",
   });
+
+export const searchMovies = (query: string, page = 1) =>
+  tmdbFetch("/search/movie", { query, page, include_adult: false });
+
+export const discoverMovies = (params: Record<string, any> = {}) =>
+  tmdbFetch("/discover/movie", {
+    sort_by: "popularity.desc",
+    ...params,
+  });
