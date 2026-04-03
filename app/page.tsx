@@ -12,7 +12,7 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       <HeroBanner trending={trending.results[0]} />
-      <LatestMovies trending={trending.results} />
+      <LatestMovies popular={popular.results} />
     </div>
   );
 }

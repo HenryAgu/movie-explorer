@@ -15,7 +15,7 @@ export function MovieCard({ movie }: { movie: Movie }) {
 
   return (
     <Link href={`/movie/${movie.id}`} className="group block cursor-pointer">
-      <div className="relative overflow-hidden rounded-xl bg-zinc-900 border border-white/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 hover:border-yellow-500/30">
+      <div className="relative overflow-hidden rounded-xl bg-zinc-900 border border-gray-600 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/50 hover:border-yellow-500/30">
         
         {/* Poster */}
         <div className="relative aspect-[2/3] w-full bg-zinc-800">
