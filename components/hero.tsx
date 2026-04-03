@@ -2,7 +2,6 @@ import { backdropUrl } from "@/lib/tmbd";
 import { Movie } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { SearchFilter } from "./search-filter";
 
 type HeroBannerProps = {
     trending: Movie;
@@ -31,11 +30,6 @@ export function HeroBanner({ trending }: HeroBannerProps) {
             )}
 
             <div className="absolute bg-black/50 inset-0"></div>
-
-            {/* Top Bar with Search */}
-            <div className="relative z-50 pt-10">
-                <SearchFilter />
-            </div>
 
             {/* Content */}
             <div className="absolute inset-0 flex items-end pb-12 px-6 sm:px-10 xl:px-16 pointer-events-none">
