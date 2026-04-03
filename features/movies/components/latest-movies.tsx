@@ -1,9 +1,9 @@
 'use client'
 
-import { Movie } from "@/type"
-import { MovieCard } from "./movie-card"
+import { Movie } from "@/types"
+import { MovieCard } from "@/components/movie-card"
 import { useInfiniteQuery } from "@tanstack/react-query"
-import { movieKeys } from "@/lib/query-keys"
+import { movieKeys } from "../api/query-keys"
 import { Loader2 } from "lucide-react"
 
 const LatestMovies = ({ initialPopular }: { initialPopular: Movie[] }) => {

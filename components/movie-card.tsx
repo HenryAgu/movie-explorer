@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Movie } from "@/type";
+import { Movie } from "@/types";
 import { posterUrl } from "@/lib/tmbd";
 
 function RatingBadge({ rating }: { rating: number }) {

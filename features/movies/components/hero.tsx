@@ -1,5 +1,5 @@
 import { backdropUrl } from "@/lib/tmbd";
-import { Movie } from "@/type";
+import { Movie } from "@/types";
 import Image from "next/image";
 
 type HeroBannerProps = {
