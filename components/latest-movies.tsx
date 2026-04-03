@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useMemo } from 'react'
-import { Movie } from "@/type"
+import { Movie } from "@/types"
 import { MovieCard } from "./movie-card"
 import { useInfiniteQuery } from "@tanstack/react-query"
 import { movieKeys } from "@/lib/query-keys"
