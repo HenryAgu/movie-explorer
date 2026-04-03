@@ -13,12 +13,12 @@ export default async function Home() {
     queryClient.prefetchQuery({
       queryKey: movieKeys.trending(),
       queryFn: getTrendingMovies,
-    }),
+    }).catch(() => {}),
     queryClient.prefetchInfiniteQuery({
       queryKey: movieKeys.allPopular(),
       queryFn: ({ pageParam = 1 }) => getPopularMovies(pageParam),
       initialPageParam: 1,
-    }),
+    }).catch(() => {}) 
   ]);
 
   const [trending, popular] = await Promise.all([
