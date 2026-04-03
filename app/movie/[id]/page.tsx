@@ -7,7 +7,7 @@ import { getMovieDetails, backdropUrl, posterUrl, profileUrl } from '@/lib/tmbd'
 import { notFound } from 'next/navigation';
 import { HydrationBoundary, dehydrate } from '@tanstack/react-query';
 import { getQueryClient } from '@/lib/get-query-client';
-import { movieKeys } from '@/features/movies/api/query-keys';
+import { movieKeys } from '@/lib/query-keys';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;

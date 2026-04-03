@@ -1,7 +1,7 @@
 import { getPopularMovies, getTrendingMovies } from "@/lib/tmbd";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { getQueryClient } from "@/lib/get-query-client";
-import { movieKeys } from "@/features/movies/api/query-keys";
+import { movieKeys } from "@/lib/query-keys";
 import { HeroBanner } from "@/components/hero";
 import LatestMovies from "@/components/latest-movies";
 
@@ -9,8 +9,6 @@ export default async function Home() {
   const queryClient = getQueryClient();
 
   // Prefetch data on the server
-  // Note: For infinite queries, we should use prefetchInfiniteQuery
-  // to ensure the structure in the cache is correctly set as { pages, pageParams }
   await Promise.all([
     queryClient.prefetchQuery({
       queryKey: movieKeys.trending(),

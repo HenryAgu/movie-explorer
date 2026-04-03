@@ -8,7 +8,11 @@ import { movieKeys } from "@/lib/query-keys"
 import { Loader2, Film, Plus } from "lucide-react"
 import { useSearchParams } from 'next/navigation'
 
-const LatestMovies = () => {
+interface LatestMoviesProps {
+    initialPopular?: Movie[]
+}
+
+const LatestMovies = ({ initialPopular }: LatestMoviesProps) => {
     const searchParams = useSearchParams()
     
     // Sync React Query with URL params
@@ -26,6 +30,11 @@ const LatestMovies = () => {
         return res.json()
     }
 
+    const queryKey = useMemo(() => {
+        if (!q && !year) return movieKeys.allPopular()
+        return [...movieKeys.all, 'listing', { q, year }]
+    }, [q, year])
+
     const {
         data,
         fetchNextPage,
@@ -35,7 +44,7 @@ const LatestMovies = () => {
         isError
     } = useInfiniteQuery({
         // The queryKey must include ALL params to ensure cache updates when URL changes
-        queryKey: [...movieKeys.all, 'listing', { q, year }],
+        queryKey,
         queryFn: fetchMovies,
         initialPageParam: 1,
         getNextPageParam: (lastPage) => {
@@ -44,6 +53,11 @@ const LatestMovies = () => {
             }
             return undefined
         },
+        // If we have initialPopular and are on the default stay, use it to avoid initial spinner
+        initialData: (initialPopular && !q && !year) ? {
+            pages: [{ results: initialPopular, page: 1, total_pages: 100, total_results: 2000 }],
+            pageParams: [1]
+        } : undefined,
     })
 
     const movies = useMemo(() => data?.pages.flatMap(page => page.results || []) || [], [data])
