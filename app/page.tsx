@@ -1,9 +1,9 @@
-import { HeroBanner } from "@/features/movies/components/hero";
-import LatestMovies from "@/features/movies/components/latest-movies";
 import { getPopularMovies, getTrendingMovies } from "@/lib/tmbd";
 import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { getQueryClient } from "@/lib/get-query-client";
 import { movieKeys } from "@/features/movies/api/query-keys";
+import { HeroBanner } from "@/components/hero";
+import LatestMovies from "@/components/latest-movies";
 
 export default async function Home() {
   const queryClient = getQueryClient();

@@ -1,6 +1,7 @@
 import { backdropUrl } from "@/lib/tmbd";
 import { Movie } from "@/type";
 import Image from "next/image";
+import Link from "next/link";
 
 type HeroBannerProps = {
   trending: Movie;
@@ -47,9 +48,9 @@ export function HeroBanner({ trending }: HeroBannerProps) {
                     <p className="text-sm sm:text-base text-zinc-300 line-clamp-3 mb-6 leading-relaxed">
                         {trending.overview ?? "--"}
                     </p>
-                    <button className="inline-flex items-center gap-2 rounded-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-6 py-3 text-sm transition active:scale-95">
-                        <span>▶</span> View Details
-                    </button>
+                    <Link href={`/movie/${trending.id}`} className="inline-flex items-center gap-2 rounded-full bg-yellow-500 hover:bg-yellow-400 text-black font-bold px-6 py-3 text-sm transition active:scale-95">
+                        <span>▶</span> View Detailsr
+                    </Link>
                 </div>
             </div>
         </div>
