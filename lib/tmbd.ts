@@ -39,26 +39,16 @@ export const getTrendingMovies = () =>
 export const getPopularMovies = (page = 1) =>
   tmdbFetch("/movie/popular", { page });
 
-export const getNowPlaying = (page = 1) =>
-  tmdbFetch("/movie/now_playing", { page });
-
-export const getTopRated = (page = 1) =>
-  tmdbFetch("/movie/top_rated", { page });
-
-export const searchMovies = (query: string, page = 1) =>
-  tmdbFetch("/search/movie", { query, page, include_adult: false });
-
 export const getMovieDetails = (id: string | number) =>
   tmdbFetch(`/movie/${id}`, {
     append_to_response: "credits,videos,similar,watch/providers",
   });
 
-export const getGenres = () =>
-  tmdbFetch("/genre/movie/list");
+export const searchMovies = (query: string, page = 1) =>
+  tmdbFetch("/search/movie", { query, page, include_adult: false });
 
-export const getMoviesByGenre = (genreId: number, page = 1) =>
+export const discoverMovies = (params: Record<string, any> = {}) =>
   tmdbFetch("/discover/movie", {
-    with_genres: genreId,
-    page,
     sort_by: "popularity.desc",
+    ...params,
   });
